@@ -77,7 +77,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @Cacheable(value = "listCategoryForCustomer")
+    @Cacheable(value = "listCategoryForCustomer") // redis
     public List<CategoryVO> listCategoryForCustomer(Integer parentId) {
         ArrayList<CategoryVO> categoryVOArrayList = new ArrayList<>();
         recursivelyFindCategories(categoryVOArrayList, parentId);

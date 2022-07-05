@@ -53,3 +53,7 @@ public class ParaController {
 # 参数校验
 1. 第一条相当于总开关
 ![](https://image-20220620.oss-cn-guangzhou.aliyuncs.com/image/1656769774863.png)
+
+
+# 商品分类模块总结
+![](https://image-20220620.oss-cn-guangzhou.aliyuncs.com/image/20220705113037.png)
