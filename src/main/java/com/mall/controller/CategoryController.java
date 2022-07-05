@@ -1,5 +1,6 @@
 package com.mall.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.mall.common.ApiRestResponse;
 import com.mall.common.Constant;
 import com.mall.exception.StatusCode;
@@ -7,19 +8,19 @@ import com.mall.model.pojo.Category;
 import com.mall.model.pojo.User;
 import com.mall.model.request.AddCategoryReq;
 import com.mall.model.request.UpdateCategoryReq;
+import com.mall.model.vo.CategoryVO;
 import com.mall.service.CategoryService;
 import com.mall.service.UserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * 目录Controller
@@ -84,5 +85,21 @@ public class CategoryController {
     public ApiRestResponse deleteCategory(@RequestParam Integer id){
         categoryService.delete(id);
         return ApiRestResponse.success();
+    }
+
+    @ApiOperation("后台目录列表")
+    @GetMapping("admin/category/list")
+    @ResponseBody
+    public ApiRestResponse listCategoryForAdmin(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+        PageInfo pageInfo = categoryService.listForAdmin(pageNum, pageSize);
+        return ApiRestResponse.success(pageInfo);
+    }
+
+    @ApiOperation("前台目录列表")
+    @GetMapping("category/list")
+    @ResponseBody
+    public ApiRestResponse listCategoryForCustomer() {
+        List<CategoryVO> categoryVOS = categoryService.listCategoryForCustomer(0);
+        return ApiRestResponse.success(categoryVOS);
     }
 }

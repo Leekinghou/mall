@@ -24,6 +24,15 @@
         <ThresholdFilter level="info" onMatch="DENY" onMismatch="NEUTRAL"/>
       </Filters>
       <!-- 日志格式 -->
+      <!--
+        %p：信息级别
+        %d：时间，后面一串是日期格式
+        %l ：输出日志事件的发生位置，包括类目名、发生的线程，以及在代码中的行数
+        %n: 换行
+        %m:最重要的一个，这代表真正的日志内容
+        %highlight:  重点来了，前面都是普通的日志配置，加上这个可以为每个级别定义自定义颜色，就是不同级别的信息，用不同的颜色显示。
+         {FATAL=red, ERROR=red, WARN=yellow, INFO=cyan, DEBUG=cyan,TRACE=blue}
+      -->
       <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
       <!-- 策略 -->
       <Policies>
@@ -44,6 +53,8 @@
         <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
       </Filters>
       <!-- 日志格式 -->
+<!--      <PatternLayout pattern="%highlight{[%p] %-d{yyyy-MM-dd HH:mm:ss} &ndash;&gt; %l%n[massage] %m%n}{FATAL=red, ERROR=red, WARN=yellow, INFO=cyan, DEBUG=cyan,TRACE=blue}"/>-->
+
       <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
       <!-- 策略 -->
       <Policies>
